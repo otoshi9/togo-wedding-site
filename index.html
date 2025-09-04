@@ -15,17 +15,18 @@
       min-height: 100vh;
     }
 
-    /* 半透明の背景写真 */
-    body::before {
-      content: "";
+    /* 背景用のdiv（最初は非表示） */
+    #bgImage {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background-image: url("images/togo_wedding.jpg"); /* ← 写真のパスをここに */
-      background-size: cover;
+      background-image: url("images/wedding.jpg"); /* ← 写真のパス */
+      background-size: contain; /* 画面に収まるよう調整 */
       background-position: center;
-      opacity: 0.4; /* 半透明度を調整 (0.0〜1.0) */
-      z-index: -1; /* 背景に配置 */
+      background-repeat: no-repeat;
+      opacity: 0.4; /* 半透明度 */
+      z-index: -1;
+      display: none; /* パスワード正解まで非表示 */
     }
 
     h1 {
@@ -79,6 +80,9 @@
   </style>
 </head>
 <body>
+  <!-- 背景写真用 div -->
+  <div id="bgImage"></div>
+
   <h1>🎉 秘密の結婚お祝いサイト 🎉</h1>
   <p>パスワードを入力してください</p>
   <input type="password" id="pwd" placeholder="パスワード">
@@ -87,7 +91,7 @@
   <div id="message">
     <h2>川島君 & 西谷さん 結婚おめでとう！💍</h2>
     <p>末永くお幸せに！❤️</p>
-    <!-- <button onclick="spawnHeart()">💖 ハートを飛ばす</button> -->
+    <button onclick="spawnHeart()">💖 ハートを飛ばす</button>
   </div>
 
   <script>
@@ -97,6 +101,7 @@
       const pwd = document.getElementById("pwd").value;
       if (pwd === password) {
         document.getElementById("message").style.display = "block";
+        document.getElementById("bgImage").style.display = "block"; // 背景表示
         alert("おめでとうございます！🎉");
       } else {
         alert("パスワードが違います！もう一度入力してください。");
@@ -112,9 +117,8 @@
       setTimeout(() => heart.remove(), 5000);
     }
 
-    // 背景に自動ハートを生成
+    // 背景用ハートを自動生成
     setInterval(spawnHeart, 1000);
   </script>
 </body>
 </html>
-
