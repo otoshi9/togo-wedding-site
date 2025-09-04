@@ -20,7 +20,7 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background-image: url("images/togo_wedding.jpg"); /* ← 画像ファイル名変更 */
+      background-image: url("images/togo_wedding.jpg"); /* 画像パス変更 */
       background-size: contain; /* 画面に収まるよう調整 */
       background-position: center;
       background-repeat: no-repeat;
@@ -61,6 +61,31 @@
       border-radius: 5px;
     }
 
+    /* ハートボタンをかわいく */
+    #heartButton {
+      padding: 12px 24px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(45deg, #ff6ec7, #ff85a2);
+      border: none;
+      border-radius: 50px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 20px;
+    }
+
+    #heartButton:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    #heartButton:active {
+      transform: scale(0.95);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+
     .heart {
       position: absolute;
       font-size: 30px;
@@ -95,7 +120,7 @@
   <div id="message">
     <h2>川島君 & 西谷さん 結婚おめでとう！💍</h2>
     <p>末永くお幸せに！❤️</p>
-    <button onclick="spawnHeart()">💖 ハートを飛ばす</button>
+    <button id="heartButton" onclick="spawnHeart()">💖 ハートを飛ばす</button>
   </div>
 
   <script>
@@ -127,4 +152,3 @@
   </script>
 </body>
 </html>
-
