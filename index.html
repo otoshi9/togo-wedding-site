@@ -10,7 +10,7 @@
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      overflow: hidden;
+      overflow-x: hidden;
       position: relative;
       min-height: 100vh;
     }
@@ -20,13 +20,13 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background-image: url("images/togo_wedding.jpg"); /* 画像パス変更 */
-      background-size: contain; /* 画面に収まるよう調整 */
+      background-image: url("images/togo_wedding.jpg");
+      background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      opacity: 0.4; /* 半透明度 */
+      opacity: 0.8;
       z-index: -1;
-      display: none; /* パスワード正解まで非表示 */
+      display: none;
     }
 
     h1 {
@@ -34,14 +34,19 @@
       color: #e91e63;
       margin-top: 50px;
       font-size: 3em;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
     }
 
     #message {
       display: none;
-      margin-top: 50px;
+      margin-top: 30px;
       font-size: 1.5em;
       color: #d81b60;
       animation: fadeIn 2s ease-in;
+    }
+
+    #message h2, #message p {
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
     }
 
     #pwdBox input {
@@ -93,6 +98,18 @@
       animation: floatUp 5s linear infinite;
     }
 
+    /* 写真用 div */
+    #photoBox {
+      margin-top: 30px;
+    }
+
+    #photoBox img {
+      max-width: 80%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
     @keyframes floatUp {
       0% { transform: translateY(100vh) scale(1); opacity: 1; }
       100% { transform: translateY(-50px) scale(1.5); opacity: 0; }
@@ -121,6 +138,11 @@
     <h2>川島君 & 西谷さん 結婚おめでとう！💍</h2>
     <p>末永くお幸せに！❤️</p>
     <button id="heartButton" onclick="spawnHeart()">💖 ハートを飛ばす</button>
+
+    <!-- 写真表示用 -->
+    <div id="photoBox">
+      <img src="images/togo_wedding.jpg" alt="結婚写真">
+    </div>
   </div>
 
   <script>
@@ -129,10 +151,10 @@
     function checkPassword() {
       const pwd = document.getElementById("pwd").value;
       if (pwd === password) {
-        document.getElementById("message").style.display = "block";   // メッセージ表示
-        document.getElementById("bgImage").style.display = "block";   // 背景表示
-        document.getElementById("pwdBox").style.display = "none";     // パスワード入力非表示
-        document.querySelector("h1").style.display = "none";          // サイトタイトル非表示
+        document.getElementById("message").style.display = "block";   
+        document.getElementById("bgImage").style.display = "block";   
+        document.getElementById("pwdBox").style.display = "none";     
+        document.querySelector("h1").style.display = "none";          
         alert("おめでとうございます！🎉");
       } else {
         alert("パスワードが違います！もう一度入力してください。");
@@ -148,7 +170,6 @@
       setTimeout(() => heart.remove(), 5000);
     }
 
-    // 背景用ハートを自動生成
     setInterval(spawnHeart, 1000);
   </script>
 </body>
