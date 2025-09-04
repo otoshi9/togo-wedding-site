@@ -95,6 +95,7 @@
       position: absolute;
       font-size: 30px;
       color: red;
+      top: 100%;
       animation: floatUp 5s linear infinite;
     }
 
@@ -111,8 +112,8 @@
     }
 
    @keyframes floatUp {
-     0% { transform: translateY(100%); scale(1); opacity: 1; }
-     100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+     0% { transform: translateY(0) scale(1); opacity: 1; }
+     100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
    }
 
 
@@ -175,6 +176,7 @@
   </script>
 </body>
 </html>
+
 
 
 
