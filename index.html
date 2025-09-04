@@ -2,43 +2,65 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>結婚おめでとう！</title>
+  <title>結婚おめでとう！🎉</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: "Segoe UI", sans-serif;
-      text-align: center;
-      background: #fff8f0;
       margin: 0;
       padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #fff0f5, #ffe4e1);
+      text-align: center;
+      overflow: hidden;
     }
+
     h1 {
+      font-family: 'Pacifico', cursive;
       color: #e91e63;
       margin-top: 50px;
+      font-size: 3em;
     }
+
     #message {
       display: none;
       margin-top: 50px;
+      font-size: 1.5em;
+      color: #d81b60;
+      animation: fadeIn 2s ease-in;
     }
-    .heart {
-      font-size: 100px;
-      color: red;
-      animation: pulse 1s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
+
     input {
       padding: 10px;
       font-size: 16px;
       margin-top: 20px;
     }
+
     button {
       padding: 10px 20px;
       font-size: 16px;
       margin-left: 10px;
       cursor: pointer;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 30px;
+      color: red;
+      animation: floatUp 5s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(1); opacity: 1; }
+      100% { transform: translateY(-50px) scale(1.5); opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px);}
+      100% { opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
@@ -49,22 +71,35 @@
   <button onclick="checkPassword()">OK</button>
 
   <div id="message">
-    <h2>〇〇さん & 〇〇さん 結婚おめでとう！</h2>
-    <p class="heart">💍❤️💐</p>
-    <h3>末永くお幸せに！</h3>
+    <h2>川島くん & 西谷さん ご結婚おめでとうございます！💍</h2>
+    <p>末永くお幸せに！❤️</p>
+    <button onclick="spawnHeart()">💖 ハートを飛ばす</button>
   </div>
 
   <script>
+    const password = "happiness2025";
+
     function checkPassword() {
       const pwd = document.getElementById("pwd").value;
-      // パスワードは自由に変更可能
-      if (pwd === "happiness2025") {
+      if (pwd === password) {
         document.getElementById("message").style.display = "block";
         alert("おめでとうございます！🎉");
       } else {
         alert("パスワードが違います！もう一度入力してください。");
       }
     }
+
+    function spawnHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.textContent = "❤️";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    // 背景に自動ハートを生成
+    setInterval(spawnHeart, 1000);
   </script>
 </body>
 </html>
